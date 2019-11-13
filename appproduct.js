@@ -24,14 +24,13 @@ app.use(function(req, res, next) {
 
 
 
-app.get('/product', (request, response) => {
-    const connection = connect()
-    const statement = `select * from Product`
-    connection.query(statement, (error, products) => {
-        connection.end()
-        response.send(products)
-    })
-})
+app.post("/",function(request, response) {
+    let ename = request.body.name;
+    let eno = parseInt(request.body.no);
+    let eaddress = request.body.address;
+
+    var query = `insert into emp values(${eno}, '${ename}', '${eaddress}')`;
+});
 
 app.listen(4000, () => {
     console.log(`Server started on port 4000`);
